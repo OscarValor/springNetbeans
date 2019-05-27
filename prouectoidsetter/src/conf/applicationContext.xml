@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+">
+    
+    <bean id="proceso1" class="modelo.impl.ProcesoColoreador"/>
+    
+    <bean id="proceso2" class="modelo.impl.ProcesoRecorrer"/>
+    
+    <bean id="proceso3" class="modelo.impl.ProcesoAleatorio"/>
+    
+    <!-- el serviciodistribuido tiene dependencia del proceso,
+    en la calse ServicioDistribuido tengo esta línea
+     private Proceso proceso;
+      es decir ejecuta un proceso pero tenemos 3 y hay que indicarle
+      cual ejecutar 
+      es como si hiciesemos 
+        ProcesoAleatorio proceso3=new ProcesoAleatorio();      
+        ServicioDistribuido servici=new ServicioDistribuido();
+      servicio.setProceso(proceso3);
+    -->
+    <bean id="servicio" class="controlador.ServicioDistribuido">
+        <property name="proceso" ref="proceso3"/>
+    </bean>
+
+</beans>
